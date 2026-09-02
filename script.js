@@ -77,6 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const targetId = this.getAttribute('href');
             if (!targetId || targetId === '#') return;
+
+            if (targetId === '#home') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
@@ -92,6 +98,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Go Up Button Direct Listener
+    const goUpBtn = document.getElementById('go-up-btn');
+    if (goUpBtn) {
+        goUpBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
 
 

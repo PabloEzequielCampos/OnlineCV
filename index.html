@@ -426,17 +426,16 @@
                     <p style="color: var(--text-primary); margin-bottom: 0.5rem;"><strong style="color: var(--accent-blue);">📧 Email:</strong> pabloezequielc@gmail.com</p>
                 </div>
 
-                <div class="social-links" style="margin-top: 1.5rem;">
-                    <a href="https://linkedin.com/in/pabloecampos" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <div class="footer-actions" style="margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1.25rem;">
+                    <a href="https://linkedin.com/in/pabloecampos" target="_blank" rel="noopener noreferrer" class="social-link-btn" aria-label="LinkedIn">
                         <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     </a>
-                </div>
 
-                <a href="#home" class="btn btn-primary" style="margin-top: 2rem; display: inline-flex; align-items: center; gap: 6px;">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-                    Go Up!
-                </a>
-            </div>
+                    <button type="button" id="go-up-btn" class="btn btn-primary go-up-btn" onclick="window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); document.documentElement.scrollTop = 0; document.body.scrollTop = 0;" aria-label="Volver arriba">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                        <span>GO UP!</span>
+                    </button>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
