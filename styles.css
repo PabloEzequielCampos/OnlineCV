@@ -817,7 +817,7 @@ h1, h2, h3, h4 {
 @media (max-width: 900px) {
     .hero {
         flex-direction: column;
-        padding-top: 120px;
+        padding-top: 100px;
         text-align: center;
     }
     .hero-cta {
@@ -829,42 +829,317 @@ h1, h2, h3, h4 {
     .mobile-menu-btn {
         display: block;
     }
-    
+
+    /* Ocultar completamente nav-links cuando está cerrado para que NUNCA intercepte toques */
     .nav-links {
+        display: none;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: var(--bg-main);
+        background-color: rgba(5, 5, 5, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         flex-direction: column;
-        padding: 2rem 0;
-        gap: 1.5rem;
-        transform: translateY(-150%);
-        transition: transform 0.3s ease-in-out;
-        z-index: -1;
-        opacity: 0;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        padding: 1.5rem 0;
+        gap: 1.25rem;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.8);
     }
 
     .nav-links.active {
-        transform: translateY(0);
-        opacity: 1;
+        display: flex;
     }
-    
+
+    /* --- MOBILE: Fonts reducidas globalmente --- */
     .hero-title {
-        font-size: 2.8rem;
+        font-size: 1.8rem;
+        letter-spacing: -1px;
     }
-    
+
+    .hero-description {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .terminal-badge {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    /* --- MOBILE: Secciones con padding equilibrado --- */
+    .hero {
+        padding-top: 85px;
+        min-height: auto;
+        padding-bottom: 2rem;
+    }
+
+    .expertise,
+    .experience,
+    .services,
+    .certifications {
+        padding: 3.5rem 4%;
+    }
+
+    /* --- MOBILE: Botones interactivos y responsivos --- */
+    .btn {
+        padding: 0.55rem 1.1rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.02em;
+        border-radius: 6px;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        position: relative;
+        z-index: 10;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .hero-cta {
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-cta .btn {
+        flex: 0 1 auto;
+        min-width: 0;
+        max-width: none;
+        text-align: center;
+        justify-content: center;
+        white-space: nowrap;
+    }
+
+    .btn-primary:active,
+    .btn-secondary:active,
+    .btn-outline:active {
+        transform: scale(0.96) !important;
+        opacity: 0.85;
+        transition: transform 0.1s, opacity 0.1s;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform: none;
+    }
+
+    /* --- MOBILE: Code window compacta --- */
+    .code-window {
+        transform: none;
+        max-width: 100%;
+    }
+    .code-window:hover {
+        transform: none;
+    }
+    .code-body {
+        padding: 1rem;
+        font-size: 0.75rem;
+    }
+
+    /* --- MOBILE: Timeline más compacto --- */
     .timeline::before {
         left: 10px;
     }
     .timeline-item {
-        padding-left: 40px;
+        padding-left: 35px;
+        margin-bottom: 2.5rem;
     }
     .timeline-dot {
         left: 4px;
     }
+    .timeline-content h3 {
+        font-size: 1.1rem;
+    }
+    .timeline-content p {
+        font-size: 0.85rem;
+    }
+    .timeline-date {
+        font-size: 0.75rem;
+    }
+
+    /* --- MOBILE: Technical Skills grid 2x2 --- */
+    .expertise-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.6rem;
+    }
+
+    .expertise .interactive-card,
+    .card.interactive-card {
+        padding: 1rem 0.75rem;
+    }
+
+    .expertise .interactive-card .card-icon,
+    .card.interactive-card .card-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .expertise .interactive-card h3,
+    .card.interactive-card h3 {
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .expertise .interactive-card p,
+    .card.interactive-card p {
+        font-size: 0.7rem;
+        min-height: unset;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+    }
+
+    .tech-list li {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    /* --- MOBILE: Tech carousel más chico --- */
+    .tech-carousel {
+        margin-top: 2rem;
+        padding: 1rem 0;
+    }
+    .carousel-set {
+        gap: 2.5rem;
+        padding-right: 2.5rem;
+    }
+    .carousel-set i {
+        font-size: 2rem;
+    }
+
+    /* --- MOBILE: Academic Education compacto --- */
+    .service-row {
+        padding: 1.25rem;
+        border-radius: 8px;
+    }
+
+    .service-info h3 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .service-info p {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    .services-wrapper {
+        gap: 1rem;
+    }
+
+    /* --- MOBILE: Certifications grid 2 columnas --- */
+    .certifications .expertise-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.6rem;
+    }
+
+    .certifications .interactive-card {
+        padding: 0.75rem;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow: hidden;
+    }
+
+    .certifications .interactive-card .card-icon {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .certifications .interactive-card h3 {
+        font-size: 0.75rem;
+        margin-bottom: 0.2rem;
+        line-height: 1.2;
+    }
+
+    /* Primeros 4 cards de certifications: texto completo visible */
+    .certifications .interactive-card p {
+        font-size: 0.62rem;
+        min-height: unset;
+        margin-bottom: 0.2rem;
+        line-height: 1.35;
+        overflow: visible;
+        display: block;
+        -webkit-line-clamp: unset;
+    }
+
+    .certifications .interactive-card .timeline-date {
+        font-size: 0.58rem;
+        margin-top: auto;
+    }
+
+    /* Badge images en certifications */
+    .certifications .interactive-card img {
+        max-width: 85%;
+        max-height: 85%;
+        object-fit: contain;
+    }
+
+    /* --- MOBILE: About section --- */
+    .about {
+        padding: 3.5rem 4%;
+    }
+
+    .about-text h3 {
+        font-size: 1.2rem;
+    }
+
+    .about-text p {
+        font-size: 0.85rem;
+    }
+
+    .about-highlights {
+        gap: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .highlight-item {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.75rem;
+    }
+
+    /* --- MOBILE: Footer compacto --- */
+    .footer {
+        padding: 3.5rem 4% 1.5rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.75rem;
+    }
+
+    /* --- MOBILE: AI Bot más chico --- */
+    .ai-bot-btn {
+        width: 54px;
+        height: 54px;
+        padding: 12px;
+    }
+
+    /* Pseudo-elements decorativos del hero no bloquean */
+    .hero::before,
+    .hero-visual::after {
+        display: none !important;
+    }
+
+    *::before,
+    *::after {
+        pointer-events: none !important;
+    }
 }
+
 
 /* Image Modal */
 .modal {

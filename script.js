@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. Scroll Reveal Animations (Intersection Observer)
-    const revealElements = document.querySelectorAll('section, .interactive-card, .timeline-item, .service-row, .hero-content, .hero-visual');
+    const revealElements = document.querySelectorAll('section, .interactive-card, .timeline-item, .service-row, .hero-visual');
     
     const revealOptions = {
         root: null,
@@ -38,6 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                // After transition ends, remove inline transform to avoid stacking context issues
+                entry.target.addEventListener('transitionend', function cleanup() {
+                    entry.target.style.transform = '';
+                    entry.target.removeEventListener('transitionend', cleanup);
+                }, { once: true });
                 observer.unobserve(entry.target);
             }
         });
@@ -51,19 +56,34 @@ document.addEventListener('DOMContentLoaded', () => {
         styleObserver.observe(el);
     });
 
-    // 3. Smooth Scrolling for anchor links
+    // Hero content: reveal immediately without transform (keeps buttons always clickable)
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        heroContent.style.opacity = '1';
+    }
+
+    // Clear inline transforms after all reveal animations finish (prevents stacking issues)
+    setTimeout(() => {
+        document.querySelectorAll('section, .interactive-card, .timeline-item, .service-row, .hero-visual').forEach(el => {
+            el.style.transform = '';
+        });
+    }, 1200);
+
+    // 3. Smooth Scrolling for anchor links (works on desktop, tablet, and mobile)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+            // Don't interfere with download links or external links
+            if (this.hasAttribute('download') || this.getAttribute('target') === '_blank') return;
+            
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            if (!targetId || targetId === '#') return;
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                // Account for fixed navbar height + some padding
-                const navHeight = document.querySelector('.navbar').offsetHeight;
+                e.preventDefault();
+                const navHeight = document.querySelector('.navbar')?.offsetHeight || 70;
                 const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - navHeight - 20;
+                const offsetPosition = elementPosition + window.pageYOffset - navHeight - 15;
 
                 window.scrollTo({
                     top: offsetPosition,
